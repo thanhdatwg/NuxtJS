@@ -4,24 +4,30 @@
       <h1>Get the latest tech new!</h1>
     </section>
     <section class="featured-posts">
-      <nuxt-link :to="'/posts/' + 1"  class="post-preview"> 
-        <article>
-          <div class="post-thumbnail" style="background-image: url('/tech-govt-feature.jpg')"></div>
-          <div class="post-content">
-            <h1>Post Title</h1>
-            <p>Preview Text</p>
-          </div>
-        </article>
-      </nuxt-link>
-      <nuxt-link :to="'/posts/' + 2" class="post-preview">
-        <article>
-          <div class="post-thumbnail" style="background-image: url('/tech-govt-feature.jpg')"></div>
-          <div class="post-content">
-            <h1>Post Title 2</h1>
-            <p>Preview Text 2</p>
-          </div>
-        </article>
-      </nuxt-link>
+      <PostPreview
+        id="1"
+        thumbnail="/tech-govt-feature.jpg"
+        title="Hello there !"
+        previewText="This my first post !"
+      />
+      <PostPreview
+        id="2"
+        thumbnail="/tech-govt-feature.jpg"
+        title="Hello there !"
+        previewText="This my second post !"
+      />
+      <PostPreview
+        id="3"
+        thumbnail="/tech-govt-feature.jpg"
+        title="Hello there !"
+        previewText="This my third post !"
+      />
+      <PostPreview
+        id="4"
+        thumbnail="/tech-govt-feature.jpg"
+        title="hi!!"
+        previewText="This my post !"
+      />
     </section>
   </div>
 </template>
@@ -29,6 +35,7 @@
 <script>
 import Logo from "~/components/Logo.vue";
 import VuetifyLogo from "~/components/VuetifyLogo.vue";
+import PostPreview from "~/components/Posts/PostPreview.vue";
 
 export default {
   components: {
@@ -44,6 +51,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url('~assets/images/abc.jpeg');
   background-position: center;
   background-size: cover;
 }
@@ -76,41 +84,5 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-}
-
-.post-preview {
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 2px #ccc;
-  background-color: white;
-  width: 90%;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-@media (min-width: 850px) {
-  .post-preview {
-    width: 400px;
-    margin: 10px;
-  }
-}
-
-.post-thumbnail {
-  width: 100%;
-  height: 200px;
-  background-position: center;
-  background-size: cover;
-}
-
-.post-content {
-  padding: 10px;
-  text-align: center;
-}
-
-a:hover .post-content,
-a:active .post-content {
-  background-color: #ccc;
 }
 </style>
