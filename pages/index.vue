@@ -3,44 +3,18 @@
     <section class="intro">
       <h1>Get the latest tech new!</h1>
     </section>
-    <section class="featured-posts">
-      <PostPreview
-        id="1"
-        thumbnail="/tech-govt-feature.jpg"
-        title="Hello there !"
-        previewText="This my first post !"
-      />
-      <PostPreview
-        id="2"
-        thumbnail="/tech-govt-feature.jpg"
-        title="Hello there !"
-        previewText="This my second post !"
-      />
-      <PostPreview
-        id="3"
-        thumbnail="/tech-govt-feature.jpg"
-        title="Hello there !"
-        previewText="This my third post !"
-      />
-      <PostPreview
-        id="4"
-        thumbnail="/tech-govt-feature.jpg"
-        title="hi!!"
-        previewText="This my post !"
-      />
-    </section>
+    <PostList/>
   </div>
 </template>
 
 <script>
-import Logo from "~/components/Logo.vue";
-import VuetifyLogo from "~/components/VuetifyLogo.vue";
 import PostPreview from "~/components/Posts/PostPreview.vue";
+import PostList from "~/components/Posts/PostList.vue";
 
 export default {
   components: {
-    Logo,
-    VuetifyLogo,
+    PostPreview,
+    PostList
   },
 };
 </script>
