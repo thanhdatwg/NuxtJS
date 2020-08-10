@@ -1,7 +1,7 @@
 <template>
   <div class="input-control">
     <label><slot /></label>
-    <input
+    <input  
       v-if="controlType === 'input'"
       v-bind="$attrs"
       :value="value"

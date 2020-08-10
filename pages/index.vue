@@ -3,19 +3,41 @@
     <section class="intro">
       <h1>Get the latest tech new!</h1>
     </section>
-    <PostList/>
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
-import PostPreview from "~/components/Posts/PostPreview.vue";
 import PostList from "~/components/Posts/PostList.vue";
 
 export default {
   components: {
-    PostPreview,
     PostList
   },
+  data() {
+    return {
+      loadedPosts: [
+        {
+          id: "1",
+          thumbnail: "/post.jpg",
+          title: "Hello there !",
+          previewText:"This my first post !"
+        },
+        {    
+          id: "2",
+          thumbnail: "/post1.jpg",
+          title: "Hello there !",
+          previewText: "This my second post !"
+        },
+        {
+          id: "3",
+          thumbnail: "/post2.jpg",
+          title: "Hello there !",
+          previewText: "This my third post !"
+        }
+      ]
+    }
+  }
 };
 </script>
 
@@ -25,7 +47,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
-  background-image: url('~assets/images/anhnen1.jpg');
+  background-image: url("~assets/images/anhnen1.jpg");
   background-position: center;
   background-size: cover;
 }

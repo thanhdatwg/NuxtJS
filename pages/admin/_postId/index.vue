@@ -9,6 +9,7 @@
 <script>
 import AdminPostForm from "~/components/Admin/AdminPostForm.vue";
 export default {
+  layout: "admin",
   components: {
     AdminPostForm,
   },
@@ -17,7 +18,7 @@ export default {
       loadedPost: {
         author: "111212",
         title: "12312",
-        content: "1231313333",
+        content: "contenttt",
         thumbnailLink: "/tech-govt-feature.jpg",
       },
     };

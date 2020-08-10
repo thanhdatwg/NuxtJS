@@ -1,7 +1,7 @@
 <template>
   <div class="admin-page">
     <section class="new-post">
-      <button @click="$router.push('/admin/new-post')">Create Post</button>
+      <AppButton @click="$router.push('/admin/new-post')">Create Post</AppButton>
     </section>
     <section class="existing-posts">
       <h1>Existing Post</h1>
@@ -12,10 +12,13 @@
 
 <script>
 import PostList from "~/components/Posts/PostList.vue";
+import AppButton from "~/components/UI/AppButton.vue";
 export default {
+  layout: "admin",
   components: {
     PostList,
-  }
+    AppButton
+  },
 }
 </script>
 
@@ -29,9 +32,7 @@ export default {
   padding-bottom: 10px;
 }
 .new-post button{
-  border: 3px solid rgb(107, 145, 201);
   border-radius: 5px;
-  background-color: rgb(171, 171, 218);
 }
 .existing-posts h1 {
   text-align:center;

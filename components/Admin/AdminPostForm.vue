@@ -24,7 +24,7 @@ export default {
     },
   },
   data() {
-    return {
+    return { 
       editedPost: this.post
         ? { ...this.post }
         : {
