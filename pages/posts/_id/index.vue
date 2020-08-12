@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of the Post</h1>
+      <h1 class="post-title">{{loadedPost.title}}</h1>
       <div class="post-details">
-        <div class="post-detail">Last update on XXX</div>
-        <div class="post-detail">Written by NAME</div>
+        <div class="post-detail">Last update on {{loadedPost.updateDate}}</div>
+        <div class="post-detail">Written by {{loadedPost.author}}</div>
       </div>
-      <p class="post-content">Content of the post</p>
+      <p class="post-content">{{loadedPost.content}}</p>
     </section>
     <section class="post-feedback">
       <p>
@@ -18,7 +18,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  asyncData(context,callback) {
+    setTimeout(() => {
+      callback(null,{
+        loadedPost: {
+          id: "1",
+          thumbnail: "/post.jpg",
+          title: "First Post (ID: " + context.params.id +  ")",
+          previewText:"This my first post !",
+          updateDate: new Date(),
+          author: "Maximax",
+          content: "Some dummy..."
+        }
+      })
+    },1000)
+  }
+};
 </script>
 
 <style scoped>

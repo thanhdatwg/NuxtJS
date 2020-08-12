@@ -1,6 +1,6 @@
 <template>
   <div class="posts-page">
-    <PostList />
+    <PostList :posts = "$store.state.loadedPosts"/>
   </div>
 </template>
 
@@ -9,6 +9,11 @@ import PostList from "~/components/Posts/PostList.vue";
 export default {
   components: {
     PostList,
+  },
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts
+    }
   }
 };
 </script>
@@ -19,5 +24,4 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 </style>

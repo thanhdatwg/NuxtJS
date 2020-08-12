@@ -5,7 +5,7 @@
     </section>
     <section class="existing-posts">
       <h1>Existing Post</h1>
-      <PostList isAdmin/>
+      <PostList :isAdmin="true" :posts = "$store.state.loadedPosts"/>
     </section>
   </div>
 </template>

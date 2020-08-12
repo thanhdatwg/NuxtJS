@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get the latest tech new!</h1>
     </section>
-    <PostList :posts="loadedPosts" />
+    <PostList :isAdmin="false" :posts="loadedPosts" />
   </div>
 </template>
 
@@ -12,30 +12,11 @@ import PostList from "~/components/Posts/PostList.vue";
 
 export default {
   components: {
-    PostList
+    PostList,
   },
-  data() {
-    return {
-      loadedPosts: [
-        {
-          id: "1",
-          thumbnail: "/post.jpg",
-          title: "Hello there !",
-          previewText:"This my first post !"
-        },
-        {    
-          id: "2",
-          thumbnail: "/post1.jpg",
-          title: "Hello there !",
-          previewText: "This my second post !"
-        },
-        {
-          id: "3",
-          thumbnail: "/post2.jpg",
-          title: "Hello there !",
-          previewText: "This my third post !"
-        }
-      ]
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts  
     }
   }
 };
