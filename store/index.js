@@ -25,7 +25,7 @@ const createStore = () => {
       nuxtServerInit(vuexContext, context) {
         //nuxtServerInit : lấy dữ liệu từ store và chỉ chạy trên lần load đầu tiên
         return axios
-          .get("https://nuxt-blog-dafee.firebaseio.com/posts.json")
+          .get(process.env.baseURL +"/posts.json")
           .then(res => {
             const postsArray = [];
             for (const key in res.data) {
@@ -43,7 +43,7 @@ const createStore = () => {
         };
         return axios
           .post(
-            "https://nuxt-blog-dafee.firebaseio.com/posts.json",
+            process.env.baseURL + "/posts.json",
             createdPost
           )
           .then(result => {
@@ -58,7 +58,7 @@ const createStore = () => {
       editPost(vuexContext, editedPost) {
         return axios
           .put(
-            "https://nuxt-blog-dafee.firebaseio.com/posts/" +
+            process.env.baseURL + "/posts/" +
               editedPost.id +
               ".json",
             editedPost

@@ -28,6 +28,7 @@ export default {
       { rel: 'stylesheet', href:"https://fonts.googleapis.com/css2?family=Lato&display=swap"}
     ]
   },
+  loading: {color: '#fa923f', height: '4px'},
   /*
   ** Global CSS
   */
@@ -39,6 +40,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~plugins/date-filter.js'
   ],
   /*
   ** Auto import components
@@ -55,6 +57,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    
   ],
   /*
   ** vuetify module configuration
@@ -82,5 +85,12 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+  env: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-dafee.firebaseio.com'
+  },
+  transition: { 
+    name: 'fade',
+    mode: 'out-in'
   }
 }

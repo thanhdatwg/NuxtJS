@@ -28,7 +28,7 @@ export default {
   position: relative;
   padding: 30px;
   box-sizing: border-box;
-  background-image: url("~assets/images/anhnen1.jpg");
+  background-image: url("~assets/images/anhnen2.jpg");
   background-position: center;
   background-size: cover;
 }
