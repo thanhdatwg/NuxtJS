@@ -57,8 +57,12 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    
+    '@nuxtjs/axios',
   ],
+  axios: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-dafee.firebaseio.com',
+    credentials: false,
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -87,7 +91,9 @@ export default {
   build: {
   },
   env: {
-    baseURL: process.env.BASE_URL || 'https://nuxt-blog-dafee.firebaseio.com'
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-dafee.firebaseio.com',
+    fbAPIkey: 'AIzaSyAfyC6B3Hff9Lmu6Hkp8SrCHRnFsFpTNTA',
+
   },
   transition: { 
     name: 'fade',
