@@ -1,5 +1,7 @@
 import Vuex from "vuex";
 import axios from "axios";
+import Cookie from "js-cookie";
+
 const createStore = () => {
   return new Vuex.Store({
     state: {
@@ -25,6 +27,9 @@ const createStore = () => {
       setToken(state, token) {
         ///mutations xử lý việc đăng nhập , có action là authenticateUser
         state.token = token;
+      },
+      clearToken(state) {
+        state.token = null;
       }
     },
     actions: {
@@ -48,7 +53,10 @@ const createStore = () => {
           updateDate: new Date()
         };
         return axios
-          .post(process.env.baseURL + "/posts.json?auth=" + vuexContext.state.token , createdPost)
+          .post(
+            process.env.baseURL + "/posts.json?auth=" + vuexContext.state.token,
+            createdPost
+          )
           .then(result => {
             vuexContext.commit("addPost", {
               ...createdPost,
@@ -61,7 +69,11 @@ const createStore = () => {
       editPost(vuexContext, editedPost) {
         return axios
           .put(
-            process.env.baseURL + "/posts/" + editedPost.id + ".json?auth=" + vuexContext.state.token,
+            process.env.baseURL +
+              "/posts/" +
+              editedPost.id +
+              ".json?auth=" +
+              vuexContext.state.token,
             editedPost
           )
           .then(res => {
@@ -90,23 +102,78 @@ const createStore = () => {
           })
           .then(result => {
             vuexContext.commit("setToken", result.data.idToken); //idToken là 1 attribute trong result
-            // console.log(result);
-            // console.log(result.data.idToken);
+
+            localStorage.setItem("token", result.data.idToken); //lưu idToken vào biến token ở local
+            localStorage.setItem(
+              "tokenExpiration",
+              new Date().getTime + Number.parseInt(result.data.expiresIn) * 1000
+            );
+
+            Cookie.set("jwt", result.data.idToken); // lưu giá trị token vào biến jwt trong cookie
+            Cookie.set(
+              "expirationDate",
+              new Date().getTime + Number.parseInt(result.data.expiresIn) * 1000
+            );
           })
           .catch(e => {
             console.log(e.response);
           });
+      },
+
+      initAuth(vuexContext, req) {
+        let token;
+        let expirationDate;
+        if (req) {
+          // xử lý ở server
+          if (!req.headers.cookie) {
+            // nếu không gửi lên server đc thì return null;
+            return;
+          }
+          //nếu không thì lưu idToken vào jwtCookie ở server
+          const jwtCookie = req.headers.cookie
+            .split(";")
+            .find(c => c.trim().startsWith("jwt="));
+          if (!jwtCookie) {
+            return;
+          }
+
+          token = jwtCookie.split("=")[1];
+          expirationDate = req.headers.cookie
+            .split(";")
+            .find(c => c.trim().startsWith("expirationDate="))
+            .split("=")[1];
+        } else {
+          token = localStorage.getItem("token");
+          expirationDate = localStorage.getItem("tokenExpiration");
+        }
+        if (new Date().getTime > +expirationDate || !token) {
+          console.log("No token or invalid token");
+          vuexContext.dispatch("logout");
+          return;
+        }
+        vuexContext.commit("setToken", token);
+      },
+
+      logout(vuexContext) {
+        vuexContext.commit("clearToken");
+        Cookie.remove("jwt");
+        Cookie.remove("expirationDate");
+        if (process.client) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("tokenExpiration");
+        }
       }
     },
     getters: {
       loadedPosts(state) {
         return state.loadedPosts;
       },
-      isAuthenticated(state) {    // xử lý trong middleware auth.js
-        return state.token != null
+      isAuthenticated(state) {
+        // xử lý trong middleware auth.js
+        return state.token != null;
       }
     }
-  }); 
+  });
 };
 
 export default createStore;

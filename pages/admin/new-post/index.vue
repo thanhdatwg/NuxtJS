@@ -12,7 +12,7 @@ import AdminPostForm from "~/components/Admin/AdminPostForm.vue";
 import axios from "axios";
 export default {
   layout: "admin",
-  middleware: 'auth', 
+  middleware: ["check-auth", "auth"],
   components: {
     AdminPostForm,
   },
