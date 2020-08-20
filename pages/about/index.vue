@@ -1,11 +1,11 @@
 <template>
   <div class="about-page">
-    <!-- <div>{{data3}}</div> -->
     <h1>This is my absolutely fantastic "About Me" Page!</h1>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam officiis ab voluptatibus assumenda error quas deleniti eius? Suscipit, numquam? Quis aliquid non animi numquam amet voluptas dolorum sunt aspernatur commodi?</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam officiis ab voluptatibus assumenda error quas deleniti eius? Suscipit, numquam? Quis aliquid non animi numquam amet voluptas dolorum sunt aspernatur commodi?</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam officiis ab voluptatibus assumenda error quas deleniti eius? Suscipit, numquam? Quis aliquid non animi numquam amet voluptas dolorum sunt aspernatur commodi?</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam officiis ab voluptatibus assumenda error quas deleniti eius? Suscipit, numquam? Quis aliquid non animi numquam amet voluptas dolorum sunt aspernatur commodi?</p>
+    <br>
+    <img src="/post.jpg" alt />
+    <br>
+    <br>
+    <h4>A blog (a truncation of "weblog")[1] is a discussion or informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order, so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual,[citation needed] occasionally of a small group, and often covered a single subject or topic. In the 2010s, "multi-author blogs" (MABs) emerged, featuring the writing of multiple authors and sometimes professionally edited. MABs from newspapers, other media outlets, universities, think tanks, advocacy groups, and similar institutions account for an increasing quantity of blog traffic. The rise of Twitter and other "microblogging" systems helps integrate MABs and single-author blogs into the news media. Blog can also be used as a verb, meaning to maintain or add content to a blog.</h4>
   </div>
 </template>
 
@@ -14,22 +14,8 @@
   text-align: center;
   padding: 30px;
 }
+.about-page p {
+  float: left;
+}
 </style>
 
-<script>
-export default {
-  // data() {
-  //   return {data: '', data3: '3'}
-  // },
-  // mounted(){
-  //   setTimeout(() => {
-  //     this.data = '7647474674'
-  //   }, 1000)
-  //   this.data = 'IUYIOUYIUYIUYIUYIUYIUYIUY'
-  // },
-  // async asyncData(context) {
-  //   await API
-  //   return {data: '', data2: ''}
-  // }
-}
-</script>
