@@ -3,7 +3,7 @@
     <header class="the-header">
       <TheSideNavToggle @toggle="$emit('sidenav-toggle')" />
       <div class="logo">
-        <nuxt-link to="/">WG BLOG</nuxt-link>
+        <nuxt-link to="/">Weather Forecast</nuxt-link>
       </div>
       <div class="spacer"></div>
       <div class="navigation-items">
@@ -29,11 +29,10 @@ import TheSideNavToggle from "@/components/Navigation/TheSideNavToggle";
 export default {
   name: "TheHeader",
   components: {
-    TheSideNavToggle,
-  },
+    TheSideNavToggle
+  }
 };
 </script>
-
 
 <style scoped>
 .header-container {
