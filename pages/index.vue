@@ -22,7 +22,9 @@
                         width="50px"
                         style="margin-top:10px"
                       />
-                      <h1 style="margin-top:30px;margin-left: 4px">12&deg;C</h1>
+                      <h1 style="margin-top:30px;margin-left: 4px">
+                        {{ temp }}&deg;C
+                      </h1>
                     </div>
                   </v-col>
                   <v-spacer></v-spacer>
@@ -90,55 +92,56 @@ export default {
           "http://api.openweathermap.org/data/2.5/forecast?lat=21.027763&lon=105.834160&appid=d49c0ac2d677fdf96b7b8fe99aadd4bf"
         )
         .then(response => {
-          console.log(response);
-        });
-    },
-
-    showPosition(position) {
-      let location = position.coords.latitude + "+" + position.coords.longitude;
-      console.log(location);
-      axios
-        .get(
-          "https://wft-geo-db.p.rapidapi.com/v1/geo/locations/" +
-            location +
-            "/nearbyCities?radius=100",
-          {
-            headers: {
-              "x-rapidapi-key":
-                "a7bd93d8damshc94cebeb5d84caap1521a9jsn2f6dd44d649a",
-              "x-rapidapi-host": "wft-geo-db.p.rapidapi.com"
-            }
-          }
-        )
-        .then(response => {
-          console.log(response.data.data[0].name);
-          let city = response.data.data[0].name;
-          axios
-            .get(
-              "https://api.openweathermap.org/data/2.5/weather?q=" +
-                city +
-                "&appid=3265874a2c77ae4a04bb96236a642d2f"
-            )
-            .then(response => {
-              console.log(response.data);
-              this.infoWeather = response.data;
-              this.temp = Math.floor(response.data.main.temp - 273.15);
-            })
-            .catch(e => {
-              alert("Get location error");
-              axios
-                .get(
-                  "https://api.openweathermap.org/data/2.5/weather?q=hanoi&appid=3265874a2c77ae4a04bb96236a642d2f"
-                )
-                .then(response => {
-                  console.log(response.data);
-                  this.infoWeather = response.data;
-                  this.temp = Math.floor(response.data.main.temp - 273.15);
-                });
-              console.log(e);
-            });
+          console.log(response.data);
+          this.temp = (response.data.list[2].main.temp - 273.15).toFixed(1);
         });
     }
+
+    // showPosition(position) {
+    //   let location = position.coords.latitude + "+" + position.coords.longitude;
+    //   console.log(location);
+    //   axios
+    //     .get(
+    //       "https://wft-geo-db.p.rapidapi.com/v1/geo/locations/" +
+    //         location +
+    //         "/nearbyCities?radius=100",
+    //       {
+    //         headers: {
+    //           "x-rapidapi-key":
+    //             "a7bd93d8damshc94cebeb5d84caap1521a9jsn2f6dd44d649a",
+    //           "x-rapidapi-host": "wft-geo-db.p.rapidapi.com"
+    //         }
+    //       }
+    //     )
+    //     .then(response => {
+    //       console.log(response.data.data[0].name);
+    //       let city = response.data.data[0].name;
+    //       axios
+    //         .get(
+    //           "https://api.openweathermap.org/data/2.5/weather?q=" +
+    //             city +
+    //             "&appid=3265874a2c77ae4a04bb96236a642d2f"
+    //         )
+    //         .then(response => {
+    //           console.log(response.data);
+    //           this.infoWeather = response.data;
+    //           this.temp = Math.floor(response.data.main.temp - 273.15);
+    //         })
+    //         .catch(e => {
+    //           alert("Get location error");
+    //           axios
+    //             .get(
+    //               "https://api.openweathermap.org/data/2.5/weather?q=hanoi&appid=3265874a2c77ae4a04bb96236a642d2f"
+    //             )
+    //             .then(response => {
+    //               console.log(response.data);
+    //               this.infoWeather = response.data;
+    //               this.temp = Math.floor(response.data.main.temp - 273.15);
+    //             });
+    //           console.log(e);
+    //         });
+    //     });
+    // }
   },
   computed: {
     loadedPosts() {
